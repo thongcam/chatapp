@@ -27,7 +27,7 @@ $('.choice').click((event) => {
     .then(data => {
       if (data === 'Success') {
         hideSpinner();
-        setTimeout(window.location.assign('https://thongcam.github.io/chatapp/UI/index.html'),2000)
+        setTimeout(window.location.assign('https://thongcam.github.io/chatapp/UI/index.html'),1000)
       } else {
         hideSpinner();
         alert('Error')
