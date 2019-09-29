@@ -1,4 +1,16 @@
+const showSpinner = (text) => {
+  $('#spinner').show();
+  $('#spinner-backdrop').show();
+  $('#spinner-text').text(text);
+}
+
+const hideSpinner = () => {
+  $('#spinner').hide();
+  $('#spinner-backdrop').hide();
+}
+
 $( document ).ready(function() {
+  showSpinner('Loading messages');
   fetch('https://chatapp-entropy.herokuapp.com/',{
     method: 'get',
     headers: {'Content-Type':  'application/json'},
@@ -7,6 +19,7 @@ $( document ).ready(function() {
     .then(data => {
       const {playercode,player} = data;
       if (data !== 'Failed') {
+        hideSpinner();
         data.messages.forEach((message) => {
           $('.messages-wrapper').append(`<div class="message">
             <span class="sender ${message.playercode}">${message.player}: </span>${message.text}
@@ -34,6 +47,7 @@ $( document ).ready(function() {
           $('.chatinput').val('');
         })
       } else if(data === 'Failed'){
+        showSpinner('Redirecting...')
         window.location.assign('https://thongcam.github.io/chatapp/Players/index.html')
       }
     })
@@ -43,5 +57,6 @@ $('.logout').click(() => {
   var mydate = new Date();
   mydate.setTime(mydate.getTime() - 1);
   document.cookie = "username=; expires=" + mydate.toGMTString();
+  showSpinner('Redirecting...');
   setTimeout(window.location.replace('https://chatapp-entropy.herokuapp.com/logout'),1000)
 })

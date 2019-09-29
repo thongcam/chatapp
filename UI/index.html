@@ -4,8 +4,14 @@
     <meta charset="utf-8">
     <title></title>
     <link rel="stylesheet" href="./master.css">
+    <link rel="stylesheet" href="spinner.css">
   </head>
   <body>
+    <div style='background-color:#000;opacity:0.5;z-index:998;height:100%;width:100%;position:absolute' id='spinner-backdrop'></div>
+    <div class='deadcenter' id='spinner' style='z-index:999'>
+      <div class="spinner"></div>
+      <p id='spinner-text'>Loading...</p>
+    </div>
     <div class="header">
       <p class="title">Chat App </p>
       <button type="button" class='button logout activated'>Logout</button>
