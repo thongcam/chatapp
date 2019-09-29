@@ -13,7 +13,8 @@ $( document ).ready(function() {
           </div>`)
         })
 
-        $('.title').append(`<span class='${playercode}'>(${player})</span>`)
+        $('.title').append(`<span class='${playercode}'>(${player})</span>`);
+        $('.send').addClass(playercode);
         var socket = io.connect('https://chatapp-entropy.herokuapp.com/');
 
         $('.send').click(() => {
