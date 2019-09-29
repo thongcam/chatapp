@@ -14,7 +14,7 @@ $( document ).ready(function() {
         })
 
         $('.title').append(`<span class='${playercode}'>(${player})</span>`)
-        var socket = io.connect('http://localhost:3000');
+        var socket = io.connect('https://chatapp-entropy.herokuapp.com/');
 
         $('.send').click(() => {
           if ($('.chatinput').val()) {
