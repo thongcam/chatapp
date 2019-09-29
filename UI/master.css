@@ -1,0 +1,132 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  background-color: #000000;
+  background-image: url("data:image/svg+xml,%3Csvg width='32' height='64' viewBox='0 0 32 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 28h20V16h-4v8H4V4h28v28h-4V8H8v12h4v-8h12v20H0v-4zm12 8h20v4H16v24H0v-4h12V36zm16 12h-4v12h8v4H20V44h12v12h-4v-8zM0 36h8v20H0v-4h4V40H0v-4z' fill='%235a5463' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E");
+  height: 100%;
+  font-family: "helvetica";
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.header {
+  height: 10vh;
+  padding: 0 40px;
+  background-color: #242228;
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+}
+
+.button {
+  color: white;
+  width: 10em;
+  transition: transform .1s;
+  margin-left: auto;
+  border: 0;
+  font-weight: bold;
+}
+
+.logout {
+  background-color: #D33131;
+  width: 6em;
+  padding: 1em 0;
+}
+
+.activated {
+  filter: saturate(100%);
+}
+.activated:hover {
+  cursor: pointer;
+  filter: saturate(70%);
+}
+
+.activated:active {
+  transform: scale(0.95);
+}
+
+.title{
+  display: inline-block;
+  margin: 0;
+}
+
+.chatinput-wrapper {
+  margin-bottom: auto;
+  display: flex;
+  height: 10vh;
+}
+
+.chatinput {
+  font-size: 1em;
+  font-family: helvetica;
+  overflow-x: visible;
+  resize: none;
+  width: 95vw;
+  padding: 1em 0 1em 1em;
+}
+
+.send {
+   display: inline-block;
+   width: 5vw;
+   margin: auto;
+   padding-left: 20px;
+   font-size: 1.5em;
+   font-weight: lighter;
+   text-decoration: underline;
+   color: #4285F4;
+}
+
+.messages-wrapper {
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.message {
+  margin-left: 1em;
+  margin-top: 1em;
+}
+
+.sender {
+  font-weight: bold;
+}
+
+.send:hover {
+  cursor: pointer;
+  filter: saturate(70%);
+}
+
+.messages-wrapper::-webkit-scrollbar
+  {
+    width: 5px;  /* for vertical scrollbars */
+    height: 12px; /* for horizontal scrollbars */
+  }
+
+.messages-wrapper::-webkit-scrollbar-track
+  {
+    background: rgba(50, 50, 50, 0.1);
+    -webkit-border-radius: 3px;
+  }
+
+.messages-wrapper::-webkit-scrollbar-thumb
+  {
+    background: rgba(250, 250, 250, 0.5);
+    -webkit-border-radius: 3px;
+  }
+
+  .no1 {
+    color: #D33131;
+  }
+
+  .no2 {
+    color: #00DB78;
+  }
+
+  .no3 {
+    color: #4285F4;
+  }
+
+  .no4 {
+    color: #F4B400;
+  }
