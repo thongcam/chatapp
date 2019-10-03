@@ -31,7 +31,7 @@ var options = {
 }
 
 app.use(cors(options));
-app.use(session({ secret: 'cookie-secret',resave: false,
+app.use(session({store: new (require('connect-pg-simple')(session))(), secret: 'cookie-secret',resave: false,
     saveUninitialized: true, cookie: { maxAge: 60000, secure: true }}));
 app.use(cookieParser());
 app.use(bodyParser.json());
