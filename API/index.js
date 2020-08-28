@@ -12,10 +12,14 @@ const app = express();
 const knex = require("knex")({
   client: "pg",
   connection: {
+    //vì add database thẳng vào heroku app nên chỉ cần dùng process.env.DATABASE_URL
     connectionString: process.env.DATABASE_URL,
+    //encrypted connection
     ssl: true,
   },
 });
+
+//set up cors vì tên miền heroku app và tên miền client k giống nhau (k cần làm bước này)
 
 var whitelist = [
   "https://chatapp-entropy.herokuapp.com/",
@@ -51,10 +55,12 @@ const server = app.listen(process.env.PORT, () => {
   console.log(`Listen to request on port ${process.env.PORT}`);
 });
 
+//khi connect vào trang gửi tin nhắn
 app.get("/", (req, res) => {
   if (!req.cookies.user) {
     res.json("Failed");
   } else {
+    //chọn tất cả từ table messages sắp xếp theo thời gian
     knex("messages")
       .select()
       .orderBy("time")
@@ -68,10 +74,13 @@ app.get("/", (req, res) => {
   }
 });
 
+//chọn người chơi
 app.post("/choose", (req, res) => {
   if (req.body.player) {
+    //tạo cookie
     res
       .cookie(
+        //cookie tên user, là obj gồm playercode và player (name)
         "user",
         { playercode: req.body.playercode, player: req.body.player },
         {
@@ -83,14 +92,17 @@ app.post("/choose", (req, res) => {
   }
 });
 
+//logout
 app.get("/logout", (req, res) => {
   cookie = req.cookies;
+  //xóa cookie
   for (var prop in cookie) {
     if (!cookie.hasOwnProperty(prop)) {
       continue;
     }
     res.cookie(prop, "", { expires: new Date(0) });
   }
+  //redirect về trang chọn
   res.redirect("https://thongcam.github.io/chatapp/Players/index.html");
 });
 
@@ -98,6 +110,7 @@ const io = socket(server);
 
 io.on("connection", (socket) => {
   socket.on("chat", (data) => {
+    //insert tin nhắn vào db
     knex("messages")
       .insert({
         text: data.message,
